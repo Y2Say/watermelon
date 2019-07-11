@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <classPathEntry location="C:/Users/Administrator/.m2/repository/mysql/mysql-connector-java/8.0.15/mysql-connector-java-8.0.15.jar"/>
+
+    <!--targetRuntime:
+           MyBatis3：默认的值，生成基于MyBatis3.x以上版本的内容，包括XXXBySample；
+           MyBatis3Simple：类似MyBatis3，只是不生成XXXBySample -->
+    <context id="MySQLTables" targetRuntime="MyBatis3" defaultModelType="flat">
+        <property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/>
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>
+        <plugin type="org.mybatis.generator.plugins.ToStringPlugin" />
+        <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/watermelon?useUnicode=true&amp;characterEncoding=utf-8&amp;useSSL=false&amp;serverTimezone=GMT"
+                        userId="root"
+                        password="root">
+            <!--识别主键-->
+            <property name="useInformationSchema" value="true"/>
+        </jdbcConnection>
+
+        <!-- java类型处理器
+            用于处理DB中的类型到Java中的类型，默认使用JavaTypeResolverDefaultImpl；
+            注意一点，默认会先尝试使用Integer，Long，Short等来对应DECIMAL和 NUMERIC数据类型；  -->
+        <javaTypeResolver>
+            <!--
+                true：使用BigDecimal对应DECIMAL和 NUMERIC数据类型
+                false：默认,
+                    scale>0;length>18：使用BigDecimal;
+                    scale=0;length[10,18]：使用Long；
+                    scale=0;length[5,9]：使用Integer；
+                    scale=0;length<5：使用Short；
+             -->
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+        <!-- java模型创建器，是必须要的元素-->
+        <javaModelGenerator targetPackage="com.yj2.watermelon.entity"
+                            targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+        <!--生成映射文件存放位置-->
+        <sqlMapGenerator targetPackage="mybatis/mapper" targetProject="src/main/resources">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+
+        <javaClientGenerator targetPackage="com.yj2.watermelon.mapper" type="XMLMAPPER" targetProject="src/main/java">
+            <!-- 在targetPackage的基础上，根据数据库的schema再生成一层package，最终生成的类放在这个package下，默认为false -->
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
+        <!--1.版本表-->
+        <!-- <table schema="watermelon" tableName="watermelon_build" domainObjectName="WatermelonBuild">
+             <property name="useActualColumnNames" value="false"/>
+         </table>-->
+
+        <!--2.收藏表-->
+        <!--<table schema="watermelon" tableName="watermelon_collection" domainObjectName="WatermelonCollection">
+            <property name="useActualColumnNames" value="false"/>
+        </table>-->
+        <!--3.部门表-->
+        <!-- <table schema="watermelon" tableName="watermelon_department" domainObjectName="WatermelonDepartment">
+             <property name="useActualColumnNames" value="false"/>
+         </table>-->
+        <!--4.部门成员表-->
+        <table schema="watermelon" tableName="watermelon_department_member" domainObjectName="WatermelonDepartmentMember">
+            <property name="useActualColumnNames" value="false"/>
+        </table>
+        <!--5.文件表-->
+        <!-- <table schema="watermelon" tableName="watermelon_file" domainObjectName="WatermelonFile">
+             <property name="useActualColumnNames" value="false"/>
+         </table>-->
+        <!--6.邀请链接表-->
+        <!--<table schema="watermelon" tableName="watermelon_invite_link" domainObjectName="WatermelonInviteLink">
+            <property name="useActualColumnNames" value="false"/>
+        </table>-->
+        <!--7.防灌水表-->
+        <!--<table schema="watermelon" tableName="watermelon_lock" domainObjectName="WatermelonLock">
+            <property name="useActualColumnNames" value="false"/>
+        </table>-->
+        <!--8.邮件队列-->
+        <!--<table schema="watermelon" tableName="watermelon_mailqueue" domainObjectName="WatermelonMailQueue">
+            <property name="useActualColumnNames" value="false"/>
+        </table>-->
+        <!--9.用户表-->
+        <table schema="watermelon" tableName="watermelon_member" domainObjectName="WatermelonMember">
+            <property name="useActualColumnNames" value="false"/>
+        </table>
+        <!--10.动态通知表-->
+        <!--<table schema="watermelon" tableName="watermelon_notify" domainObjectName="WatermelonNotify">
+            <property name="useActualColumnNames" value="false"/>
+        </table>-->
+        <!--11.组织表-->
+        <!-- <table schema="watermelon" tableName="watermelon_organization" domainObjectName="WatermelonOrganization">
+             <property name="useActualColumnNames" value="false"/>
+         </table>-->
+        <!--12.项目表-->
+         <table schema="watermelon" tableName="watermelon_project" domainObjectName="WatermelonProject">
+             <property name="useActualColumnNames" value="false"/>
+         </table>
+        <!--13.项目权限表-->
+         <table schema="watermelon" tableName="watermelon_project_auth" domainObjectName="WatermelonProjectAuth">
+             <property name="useActualColumnNames" value="false"/>
+         </table>
+        <!--14.项目角色与节点绑定-->
+        <table schema="watermelon" tableName="watermelon_project_auth_node" domainObjectName="WatermelonProjectAuthNode">
+            <property name="useActualColumnNames" value="false"/>
+        </table>
+        <!--15.项目-收藏表-->
+        <!--<table schema="watermelon" tableName="watermelon_project_collection" domainObjectName="WatermelonProjectCollection">
+            <property name="useActualColumnNames" value="false"/>
+        </table>-->
+        <!--16.项目配置表-->
+        <!-- <table schema="watermelon" tableName="watermelon_project_config" domainObjectName="WatermelonProjectConfig">
+             <property name="useActualColumnNames" value="false"/>
+         </table>-->
+        <!--17.项目日志表-->
+        <!--<table schema="watermelon" tableName="watermelon_project_log" domainObjectName="WatermelonProjectLog">
+            <property name="useActualColumnNames" value="false"/>
+        </table>-->
+        <!--18.项目-成员表-->
+        <table schema="watermelon" tableName="watermelon_project_member" domainObjectName="WatermelonProjectMember">
+            <property name="useActualColumnNames" value="false"/>
+        </table>
+        <!--19.项目菜单表-->
+        <table schema="watermelon" tableName="watermelon_project_menu" domainObjectName="WatermelonProjectMenu">
+            <property name="useActualColumnNames" value="false"/>
+        </table>
+        <!--20.项目端节点表-->
+        <table schema="watermelon" tableName="watermelon_project_node" domainObjectName="WatermelonProjectNode">
+            <property name="useActualColumnNames" value="false"/>
+        </table>
+        <!--21.项目类型表-->
+        <table schema="watermelon" tableName="watermelon_project_template" domainObjectName="WatermelonProjectTemplate">
+            <property name="useActualColumnNames" value="false"/>
+        </table>
+        <!--22.资源关联表-->
+        <!--<table schema="watermelon" tableName="watermelon_source_link" domainObjectName="WatermelonSourceLink">
+            <property name="useActualColumnNames" value="false"/>
+        </table>-->
+        <!--23.系统参数配置-->
+        <!--<table schema="watermelon" tableName="watermelon_system_config" domainObjectName="WatermelonSystemConfig">
+            <property name="useActualColumnNames" value="false"/>
+        </table>-->
+        <!--24.系统操作日志表-->
+        <!--<table schema="watermelon" tableName="watermelon_system_log" domainObjectName="WatermelonSystemLog">
+            <property name="useActualColumnNames" value="false"/>
+        </table>-->
+        <!--25.任务表-->
+        <!--<table schema="watermelon" tableName="watermelon_task" domainObjectName="WatermelonTask">
+            <property name="useActualColumnNames" value="false"/>
+        </table>-->
+        <!--26.任务点赞表-->
+        <!--<table schema="watermelon" tableName="watermelon_task_like" domainObjectName="WatermelonTaskLike">
+            <property name="useActualColumnNames" value="false"/>
+        </table>-->
+        <!--27.任务成员表-->
+        <!--<table schema="watermelon" tableName="watermelon_task_member" domainObjectName="WatermelonTaskMember">
+            <property name="useActualColumnNames" value="false"/>
+        </table>-->
+        <!--28.任务列表表-->
+        <!--<table schema="watermelon" tableName="watermelon_task_stages" domainObjectName="WatermelonTaskStages">
+            <property name="useActualColumnNames" value="false"/>
+        </table>-->
+        <!--29.任务列表模板表-->
+        <!--<table schema="watermelon" tableName="watermelon_task_stages_template" domainObjectName="WatermelonTaskStagesTemplate">
+            <property name="useActualColumnNames" value="false"/>
+        </table>-->
+        <!--30.任务标签表-->
+        <!--<table schema="watermelon" tableName="watermelon_task_tag" domainObjectName="WatermelonTaskTag">
+            <property name="useActualColumnNames" value="false"/>
+        </table>-->
+        <!--31.任务标签映射表-->
+        <!--<table schema="watermelon" tableName="watermelon_task_to_tag" domainObjectName="WatermelonTaskToTag">
+            <property name="useActualColumnNames" value="false"/>
+        </table>-->
+        <!--32.PC端登录令牌表-->
+       <!-- <table schema="watermelon" tableName="watermelon_user_token" domainObjectName="WatermelonUserToken">
+            <property name="useActualColumnNames" value="false"/>
+        </table>
+-->
+
+    </context>
+</generatorConfiguration>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/web/thymeleaf/layout">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>watermelon</title>
+    <link th:href="@{../layui/css/layui.css}" rel="stylesheet"/>
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+    <div class="layui-header">
+        <div class="layui-logo">Watermelon</div>
+        <!-- 头部区域（可配合layui已有的水平导航） -->
+        <ul class="layui-nav layui-layout-left">
+            <li class="layui-nav-item"><a th:href="@{home}">工作台</a></li>
+            <li class="layui-nav-item"><a th:href="@{project}">项目管理</a></li>
+            <li class="layui-nav-item"><a href="">团队成员</a></li>
+            <li class="layui-nav-item">
+                <a href="javascript:;">系统设置</a>
+                <dl class="layui-nav-child">
+                    <dd><a href="">邮件管理</a></dd>
+                    <dd><a href="">消息管理</a></dd>
+                    <dd><a href="">授权管理</a></dd>
+                </dl>
+            </li>
+        </ul>
+        <ul class="layui-nav layui-layout-right">
+            <li class="layui-nav-item">
+                <a href="javascript:;">
+                    <img src="img/fish.jpg" class="layui-nav-img"/>
+                    YJ2
+                </a>
+                <dl class="layui-nav-child">
+                    <dd><a href="">基本资料</a></dd>
+                    <dd><a href="">安全设置</a></dd>
+                    <dd><a href="">退出登录</a></dd>
+                </dl>
+            </li>
+        </ul>
+    </div>
+    <div class="layui-container" layout:fragment="content">
+
+    </div>
+
+    <div class="layui-footer">
+        <p style="align-content: center">@Watermelon </p>
+    </div>
+</div>
+<script th:src="@{../layui/layui.js}"></script>
+<script>
+    //JavaScript代码区域
+    layui.use('element', function(){
+        var element = layui.element;
+
+    });
+</script>
+</body>
+</html>
